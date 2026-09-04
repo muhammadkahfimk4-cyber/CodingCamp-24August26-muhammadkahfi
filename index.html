@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="To-Do List Life Dashboard - Coding Camp Mini Project">
+  <title>Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-dot"></span><span>Life Dashboard</span></div>
+      <button id="themeToggle" class="icon-btn" type="button" aria-label="Ubah tema">☾</button>
+    </header>
+
+    <section class="hero card">
+      <div>
+        <p class="eyebrow" id="dateText">Memuat tanggal...</p>
+        <h1 id="greeting">Selamat datang 👋</h1>
+        <p class="subtext">Atur tugas, fokus, dan link favoritmu dalam satu tempat.</p>
+      </div>
+      <div class="clock-wrap">
+        <div id="clock" class="clock">00:00:00</div>
+        <button id="nameButton" class="text-btn" type="button">Atur nama</button>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="card todo-card">
+        <div class="section-head">
+          <div><p class="eyebrow">Produktivitas</p><h2>To-Do List</h2></div>
+          <span id="taskCount" class="badge">0 tugas</span>
+        </div>
+        <form id="taskForm" class="input-row">
+          <input id="taskInput" type="text" placeholder="Tambahkan tugas baru..." maxlength="100" autocomplete="off" required>
+          <button class="primary-btn" type="submit">Tambah</button>
+        </form>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+        <div id="emptyTasks" class="empty-state">Belum ada tugas. Tambahkan satu untuk memulai ✨</div>
+      </article>
+
+      <aside class="side-column">
+        <article class="card timer-card">
+          <div class="section-head"><div><p class="eyebrow">Focus</p><h2>Pomodoro</h2></div><button id="timerSettings" class="mini-btn" type="button">⚙</button></div>
+          <div id="timerDisplay" class="timer">25:00</div>
+          <div class="timer-status" id="timerStatus">Siap untuk fokus</div>
+          <div class="timer-controls">
+            <button id="startTimer" class="primary-btn" type="button">Mulai</button>
+            <button id="stopTimer" class="secondary-btn" type="button">Stop</button>
+            <button id="resetTimer" class="secondary-btn" type="button">Reset</button>
+          </div>
+        </article>
+
+        <article class="card links-card">
+          <div class="section-head"><div><p class="eyebrow">Akses cepat</p><h2>Quick Links</h2></div></div>
+          <form id="linkForm" class="link-form">
+            <input id="linkName" type="text" placeholder="Nama" maxlength="30" required>
+            <input id="linkUrl" type="url" placeholder="https://example.com" required>
+            <button class="primary-btn full" type="submit">Tambah Link</button>
+          </form>
+          <div id="linkList" class="link-list"></div>
+        </article>
+      </aside>
+    </section>
+
+    <footer><span>Built with HTML • CSS • Vanilla JavaScript</span><span>Data tersimpan di browser</span></footer>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <h3 id="modalTitle">Pengaturan</h3>
+      <p id="modalDescription">Ubah pengaturan dashboard.</p>
+      <label id="nameField" class="field hidden">Nama panggilan<input id="nameInput" type="text" maxlength="30" placeholder="Masukkan nama"></label>
+      <label id="timeField" class="field hidden">Durasi fokus (menit)<input id="timeInput" type="number" min="1" max="120" value="25"></label>
+      <div class="modal-actions"><button id="cancelModal" class="secondary-btn" type="button">Batal</button><button id="saveModal" class="primary-btn" type="button">Simpan</button></div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
