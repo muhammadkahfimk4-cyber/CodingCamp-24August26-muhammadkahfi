@@ -1,15 +1,57 @@
-const $=s=>document.querySelector(s);
-const KEYS={tasks:'life_tasks',links:'life_links',name:'life_name',theme:'life_theme',duration:'pomodoro_duration'};
-const get=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}};
-let tasks=get(KEYS.tasks,[]), links=get(KEYS.links,[{name:'Google',url:'https://www.google.com'},{name:'YouTube',url:'https://www.youtube.com'},{name:'GitHub',url:'https://github.com'}]);
-let name=localStorage.getItem(KEYS.name)||'', duration=Number(localStorage.getItem(KEYS.duration))||25, remaining=duration*60, timerId=null, modalMode='name';
-function save(){localStorage.setItem(KEYS.tasks,JSON.stringify(tasks));localStorage.setItem(KEYS.links,JSON.stringify(links));}
-function updateClock(){const now=new Date(),time=now.toLocaleTimeString('id-ID',{hour12:false}),date=now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});$('#clock').textContent=time;$('#dateText').textContent=date;const h=now.getHours();let g=h<5?'Selamat malam':h<11?'Selamat pagi':h<15?'Selamat siang':h<18?'Selamat sore':'Selamat malam';$('#greeting').textContent=name?`${g}, ${name} 👋`:`${g} 👋`}
-setInterval(updateClock,1000);updateClock();
-function renderTasks(){const list=$('#taskList');list.innerHTML='';tasks.forEach(t=>{const el=document.createElement('div');el.className='task-item';el.innerHTML=`<input class="check" type="checkbox" ${t.done?'checked':''} aria-label="Tandai selesai"><span class="task-title ${t.done?'done':''}"></span><div class="task-actions"><button class="edit" title="Edit">✎</button><button class="delete" title="Hapus">×</button></div>`;el.querySelector('.task-title').textContent=t.text;el.querySelector('.check').onchange=e=>{t.done=e.target.checked;save();renderTasks()};el.querySelector('.edit').onclick=()=>{const v=prompt('Edit tugas:',t.text);if(v?.trim()){t.text=v.trim();save();renderTasks()}};el.querySelector('.delete').onclick=()=>{tasks=tasks.filter(x=>x.id!==t.id);save();renderTasks()};list.appendChild(el)});$('#emptyTasks').style.display=tasks.length?'none':'block';$('#taskCount').textContent=`${tasks.length} tugas`}
-$('#taskForm').onsubmit=e=>{e.preventDefault();const input=$('#taskInput'),text=input.value.trim();if(!text)return;if(tasks.some(t=>t.text.toLowerCase()===text.toLowerCase())){alert('Tugas tersebut sudah ada.');return}tasks.unshift({id:Date.now(),text,done:false});input.value='';save();renderTasks()};renderTasks();
-function renderLinks(){const list=$('#linkList');list.innerHTML='';links.forEach((l,i)=>{const el=document.createElement('div');el.className='link-item';el.innerHTML=`<span>🔗</span><a target="_blank" rel="noopener noreferrer"></a><button title="Hapus">×</button>`;el.querySelector('a').href=l.url;el.querySelector('a').textContent=l.name;el.querySelector('button').onclick=()=>{links.splice(i,1);save();renderLinks()};list.appendChild(el)})}$('#linkForm').onsubmit=e=>{e.preventDefault();let url=$('#linkUrl').value.trim();if(!/^https?:\/\//i.test(url))url='https://'+url;links.push({name:$('#linkName').value.trim(),url});$('#linkName').value='';$('#linkUrl').value='';save();renderLinks()};renderLinks();
-function applyTheme(){document.body.classList.toggle('dark',localStorage.getItem(KEYS.theme)==='dark');$('#themeToggle').textContent=document.body.classList.contains('dark')?'☀':'☾'}$('#themeToggle').onclick=()=>{localStorage.setItem(KEYS.theme,document.body.classList.contains('dark')?'light':'dark');applyTheme()};applyTheme();
-function openModal(mode){modalMode=mode;$('#modal').classList.remove('hidden');$('#nameField').classList.toggle('hidden',mode!=='name');$('#timeField').classList.toggle('hidden',mode!=='time');$('#modalTitle').textContent=mode==='name'?'Nama Panggilan':'Durasi Pomodoro';$('#modalDescription').textContent=mode==='name'?'Nama ini akan digunakan pada sapaan dashboard.':'Atur durasi fokus sesuai kebutuhanmu.';$('#nameInput').value=name;$('#timeInput').value=duration;setTimeout(()=>$(mode==='name'?'#nameInput':'#timeInput').focus(),50)}function closeModal(){$('#modal').classList.add('hidden')}$('#nameButton').onclick=()=>openModal('name');$('#timerSettings').onclick=()=>openModal('time');$('#cancelModal').onclick=closeModal;$('#saveModal').onclick=()=>{if(modalMode==='name'){name=$('#nameInput').value.trim();localStorage.setItem(KEYS.name,name);updateClock()}else{duration=Math.max(1,Math.min(120,Number($('#timeInput').value)||25));localStorage.setItem(KEYS.duration,duration);if(!timerId){remaining=duration*60;updateTimer()}}closeModal()};
-function updateTimer(){const m=String(Math.floor(remaining/60)).padStart(2,'0'),s=String(remaining%60).padStart(2,'0');$('#timerDisplay').textContent=`${m}:${s}`;$('#timerStatus').textContent=timerId?'Sedang fokus...':'Siap untuk fokus'}function start(){if(timerId)return;$('#timerStatus').textContent='Sedang fokus...';timerId=setInterval(()=>{remaining--;updateTimer();if(remaining<=0){clearInterval(timerId);timerId=null;remaining=duration*60;updateTimer();alert('Waktu fokus selesai! Istirahat sebentar ☕')}},1000)}function stop(){if(timerId){clearInterval(timerId);timerId=null}updateTimer()}function reset(){stop();remaining=duration*60;updateTimer()}$('#startTimer').onclick=start;$('#stopTimer').onclick=stop;$('#resetTimer').onclick=reset;updateTimer();
-$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+// SMA Cendekia Nusantara — interactive front-end
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+const backTop = document.getElementById('backTop');
+
+menuToggle?.addEventListener('click', () => {
+  const isOpen = mainNav.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.setAttribute('aria-label', isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+});
+
+document.querySelectorAll('.main-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    mainNav.classList.remove('open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Highlight the navigation item for the visible section.
+const navLinks = [...document.querySelectorAll('.nav-link')];
+const sections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(section => observer.observe(section));
+}
+
+window.addEventListener('scroll', () => {
+  backTop?.classList.toggle('visible', window.scrollY > 450);
+}, { passive: true });
+backTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Demo form: persist inquiries only in this browser's local storage.
+const interestForm = document.getElementById('interestForm');
+const formFeedback = document.getElementById('formFeedback');
+interestForm?.addEventListener('submit', event => {
+  event.preventDefault();
+  const formData = new FormData(interestForm);
+  const inquiry = {
+    name: String(formData.get('studentName')).trim(),
+    email: String(formData.get('studentEmail')).trim(),
+    grade: String(formData.get('studentGrade')),
+    createdAt: new Date().toISOString()
+  };
+  const inquiries = JSON.parse(localStorage.getItem('cendekiaPpdbInquiries') || '[]');
+  inquiries.push(inquiry);
+  localStorage.setItem('cendekiaPpdbInquiries', JSON.stringify(inquiries));
+  formFeedback.textContent = `Terima kasih, ${inquiry.name}! Minat pendaftaran tersimpan di browser ini.`;
+  interestForm.reset();
+});

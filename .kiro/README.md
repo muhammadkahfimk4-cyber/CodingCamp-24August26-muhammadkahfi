@@ -1,25 +1,15 @@
-# Kiro Project Context
+# Kiro project notes
 
-Project: To-Do List Life Dashboard
+## Project
+SMA Cendekia Nusantara school website, adapted from the To-Do List Life Dashboard brief.
 
-Technical constraints:
-- HTML, CSS, Vanilla JavaScript only
-- Browser Local Storage for client-side persistence
-- Modern browser compatibility
-- No backend and no framework
+## Technical constraints
+- HTML for structure
+- One CSS file in `css/`
+- One Vanilla JavaScript file in `js/`
+- No framework and no backend
+- Client-side demo form uses Local Storage
+- Responsive layout for modern browsers
 
-MVP implemented:
-- Current time/date and time-based greeting
-- 25-minute Pomodoro with start/stop/reset
-- To-do add/edit/done/delete + Local Storage
-- Quick Links + Local Storage
-
-Challenges implemented (3):
-1. Light / Dark mode
-2. Custom name in greeting
-3. Change Pomodoro time
-
-Additional UX:
-- Prevent duplicate tasks
-- Responsive mobile layout
-- Default quick links
+## Before submission
+Replace example school details, verify all external image rights/availability, and test on desktop and mobile.

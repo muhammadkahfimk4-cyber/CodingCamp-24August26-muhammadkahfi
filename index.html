@@ -3,80 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="To-Do List Life Dashboard - Coding Camp Mini Project">
-  <title>Life Dashboard</title>
+  <meta name="description" content="Website resmi SMA Cendekia Nusantara — sekolah yang membangun karakter, prestasi, dan masa depan.">
+  <title>SMA Cendekia Nusantara | Tumbuh, Berkarya, Berprestasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
-  <main class="app-shell">
-    <header class="topbar">
-      <div class="brand"><span class="brand-dot"></span><span>Life Dashboard</span></div>
-      <button id="themeToggle" class="icon-btn" type="button" aria-label="Ubah tema">☾</button>
-    </header>
-
-    <section class="hero card">
-      <div>
-        <p class="eyebrow" id="dateText">Memuat tanggal...</p>
-        <h1 id="greeting">Selamat datang 👋</h1>
-        <p class="subtext">Atur tugas, fokus, dan link favoritmu dalam satu tempat.</p>
-      </div>
-      <div class="clock-wrap">
-        <div id="clock" class="clock">00:00:00</div>
-        <button id="nameButton" class="text-btn" type="button">Atur nama</button>
-      </div>
-    </section>
-
-    <section class="dashboard-grid">
-      <article class="card todo-card">
-        <div class="section-head">
-          <div><p class="eyebrow">Produktivitas</p><h2>To-Do List</h2></div>
-          <span id="taskCount" class="badge">0 tugas</span>
-        </div>
-        <form id="taskForm" class="input-row">
-          <input id="taskInput" type="text" placeholder="Tambahkan tugas baru..." maxlength="100" autocomplete="off" required>
-          <button class="primary-btn" type="submit">Tambah</button>
-        </form>
-        <div id="taskList" class="task-list" aria-live="polite"></div>
-        <div id="emptyTasks" class="empty-state">Belum ada tugas. Tambahkan satu untuk memulai ✨</div>
-      </article>
-
-      <aside class="side-column">
-        <article class="card timer-card">
-          <div class="section-head"><div><p class="eyebrow">Focus</p><h2>Pomodoro</h2></div><button id="timerSettings" class="mini-btn" type="button">⚙</button></div>
-          <div id="timerDisplay" class="timer">25:00</div>
-          <div class="timer-status" id="timerStatus">Siap untuk fokus</div>
-          <div class="timer-controls">
-            <button id="startTimer" class="primary-btn" type="button">Mulai</button>
-            <button id="stopTimer" class="secondary-btn" type="button">Stop</button>
-            <button id="resetTimer" class="secondary-btn" type="button">Reset</button>
-          </div>
-        </article>
-
-        <article class="card links-card">
-          <div class="section-head"><div><p class="eyebrow">Akses cepat</p><h2>Quick Links</h2></div></div>
-          <form id="linkForm" class="link-form">
-            <input id="linkName" type="text" placeholder="Nama" maxlength="30" required>
-            <input id="linkUrl" type="url" placeholder="https://example.com" required>
-            <button class="primary-btn full" type="submit">Tambah Link</button>
-          </form>
-          <div id="linkList" class="link-list"></div>
-        </article>
-      </aside>
-    </section>
-
-    <footer><span>Built with HTML • CSS • Vanilla JavaScript</span><span>Data tersimpan di browser</span></footer>
-  </main>
-
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-box">
-      <h3 id="modalTitle">Pengaturan</h3>
-      <p id="modalDescription">Ubah pengaturan dashboard.</p>
-      <label id="nameField" class="field hidden">Nama panggilan<input id="nameInput" type="text" maxlength="30" placeholder="Masukkan nama"></label>
-      <label id="timeField" class="field hidden">Durasi fokus (menit)<input id="timeInput" type="number" min="1" max="120" value="25"></label>
-      <div class="modal-actions"><button id="cancelModal" class="secondary-btn" type="button">Batal</button><button id="saveModal" class="primary-btn" type="button">Simpan</button></div>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><span class="status-dot"></span> Penerimaan Peserta Didik Baru Tahun Ajaran 2026/2027</span>
+      <div class="top-links"><a href="#pengumuman">Pengumuman</a><span>•</span><a href="#kontak">Hubungi Kami</a></div>
     </div>
   </div>
 
-  <script src="js/script.js"></script>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#beranda" aria-label="SMA Cendekia Nusantara beranda">
+        <span class="brand-mark"><span>CN</span></span>
+        <span class="brand-copy"><strong>SMA CENDEKIA</strong><small>NUSANTARA</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu navigasi" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link active" href="#beranda">Beranda</a>
+        <a class="nav-link" href="#profil">Profil Sekolah</a>
+        <a class="nav-link" href="#program">Program</a>
+        <a class="nav-link" href="#berita">Berita</a>
+        <a class="nav-link" href="#kontak">Kontak</a>
+        <a class="nav-cta" href="#ppdb">Daftar PPDB <span>↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-pattern"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="eyebrow-icon">✦</span> SEKOLAH UNGGULAN, MASA DEPAN GEMILANG</div>
+          <h1>Temukan potensimu.<br><span>Wujudkan masa depanmu.</span></h1>
+          <p class="hero-description">Tempat belajar yang mendorong rasa ingin tahu, membentuk karakter, dan menyiapkan generasi muda untuk membawa perubahan positif.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#profil">Jelajahi Sekolah <span>→</span></a>
+            <a class="button button-ghost" href="#ppdb"><span class="play-icon">▶</span> Informasi PPDB</a>
+          </div>
+          <div class="hero-proof">
+            <div class="avatar-stack" aria-hidden="true"><span>A</span><span>N</span><span>R</span><span>+</span></div>
+            <div><strong>Komunitas belajar yang suportif</strong><small>Bersama tumbuh dan berprestasi</small></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-photo">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1100&q=85" alt="Siswa sekolah berjalan bersama di area kampus">
+            <div class="photo-shade"></div>
+            <div class="photo-label"><span class="label-star">✦</span><div><strong>Belajar lebih bermakna</strong><small>Ruang untuk setiap potensi</small></div></div>
+          </div>
+          <div class="floating-card float-top"><span class="float-icon">✧</span><div><strong>Belajar Aktif</strong><small>Eksplorasi & kolaborasi</small></div></div>
+          <div class="floating-card float-bottom"><span class="float-icon green">✓</span><div><strong>Karakter Unggul</strong><small>Berintegritas dan peduli</small></div></div>
+          <div class="hero-orb"></div>
+        </div>
+      </div>
+      <div class="container stats-strip">
+        <div class="stat"><strong>1.200<span>+</span></strong><small>Peserta didik</small></div>
+        <div class="stat"><strong>85<span>+</span></strong><small>Guru & tenaga pendidik</small></div>
+        <div class="stat"><strong>24</strong><small>Ekstrakurikuler</small></div>
+        <div class="stat"><strong>15<span>+</span></strong><small>Tahun mendampingi generasi</small></div>
+      </div>
+    </section>
+
+    <section class="section welcome-section" id="profil">
+      <div class="container welcome-grid">
+        <div class="section-image">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=85" alt="Suasana kegiatan belajar di kelas">
+          <div class="image-caption"><span>“</span><p>Pendidikan bukan hanya tentang mengetahui, tetapi juga tentang menjadi.</p></div>
+        </div>
+        <div class="section-copy">
+          <div class="eyebrow eyebrow-light">SAMBUTAN SEKOLAH</div>
+          <h2>Membangun karakter.<br><span>Menghidupkan potensi.</span></h2>
+          <p class="muted">Selamat datang di SMA Cendekia Nusantara. Kami percaya setiap siswa memiliki keunikan dan potensi yang layak dikembangkan melalui pembelajaran yang bermakna, lingkungan yang aman, serta pendampingan yang penuh perhatian.</p>
+          <p class="muted">Kami menggabungkan penguatan akademik, karakter, kreativitas, dan kecakapan digital agar siswa siap menghadapi tantangan masa depan.</p>
+          <div class="principal"><div class="principal-avatar">KS</div><div><strong>Kepala Sekolah</strong><small>SMA Cendekia Nusantara</small></div><span class="signature">Cendekia</span></div>
+          <a class="text-link" href="#visi-misi">Kenali visi dan misi kami <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section vision-section" id="visi-misi">
+      <div class="container">
+        <div class="section-heading centered"><div class="eyebrow eyebrow-light">ARAH PENDIDIKAN KAMI</div><h2>Belajar untuk hari ini,<br><span>siap untuk masa depan.</span></h2><p>Nilai yang menjadi fondasi setiap pengalaman belajar di sekolah kami.</p></div>
+        <div class="value-grid">
+          <article class="value-card"><div class="value-icon lavender">◎</div><h3>Akademik Berkualitas</h3><p>Pembelajaran aktif yang mendorong pemahaman mendalam, rasa ingin tahu, dan kemampuan berpikir kritis.</p><a href="#program">Pelajari program <span>→</span></a></article>
+          <article class="value-card"><div class="value-icon mint">♡</div><h3>Karakter & Kepedulian</h3><p>Mengembangkan integritas, empati, disiplin, dan kebiasaan berkontribusi bagi lingkungan sekitar.</p><a href="#program">Pelajari program <span>→</span></a></article>
+          <article class="value-card"><div class="value-icon peach">✳</div><h3>Kreativitas & Teknologi</h3><p>Memberi ruang bagi siswa untuk bereksperimen, berkarya, berkolaborasi, dan melek digital.</p><a href="#program">Pelajari program <span>→</span></a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section programs-section" id="program">
+      <div class="container">
+        <div class="section-heading heading-row"><div><div class="eyebrow eyebrow-light">PENGALAMAN BELAJAR</div><h2>Ruang untuk <span>bertumbuh.</span></h2></div><p>Beragam kegiatan yang membantu siswa menemukan minat, mengasah keterampilan, dan membangun kepercayaan diri.</p></div>
+        <div class="program-grid">
+          <article class="program-card program-featured"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85" alt="Siswa belajar bersama"><div class="program-overlay"><span class="program-tag">01 / AKADEMIK</span><h3>Pembelajaran Berpusat pada Siswa</h3><p>Diskusi, proyek, dan eksplorasi untuk memahami pelajaran dengan lebih nyata.</p><a href="#kontak" aria-label="Informasi pembelajaran">↗</a></div></article>
+          <article class="program-card"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85" alt="Siswa mengembangkan keterampilan digital"><div class="program-overlay"><span class="program-tag">02 / DIGITAL</span><h3>Literasi Digital & Inovasi</h3><p>Bekal teknologi untuk menciptakan solusi.</p><a href="#kontak" aria-label="Informasi literasi digital">↗</a></div></article>
+          <article class="program-card"><img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=900&q=85" alt="Siswa berolahraga bersama"><div class="program-overlay"><span class="program-tag">03 / EKSTRAKURIKULER</span><h3>Minat, Bakat & Prestasi</h3><p>Temukan panggung untuk bakatmu.</p><a href="#kontak" aria-label="Informasi ekstrakurikuler">↗</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section news-section" id="berita">
+      <div class="container">
+        <div class="section-heading heading-row"><div><div class="eyebrow eyebrow-light">KABAR CENDEKIA</div><h2>Cerita dan <span>informasi terbaru.</span></h2></div><a class="text-link desktop-link" href="#pengumuman">Lihat semua informasi <span>→</span></a></div>
+        <div class="news-grid">
+          <article class="news-card"><a class="news-image" href="#pengumuman"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800&q=85" alt="Kegiatan orientasi siswa"><span class="news-category">KEGIATAN</span></a><div class="news-body"><div class="news-meta"><span>12 Agustus 2026</span><span>•</span><span>3 menit baca</span></div><h3><a href="#pengumuman">Menyambut tahun ajaran baru dengan semangat kolaborasi</a></h3><p>Awal perjalanan baru untuk mengenal lingkungan, teman, dan potensi diri.</p><a class="read-more" href="#pengumuman">Baca selengkapnya <span>→</span></a></div></article>
+          <article class="news-card"><a class="news-image" href="#pengumuman"><img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=85" alt="Siswa berdiskusi dalam kelompok"><span class="news-category blue">PRESTASI</span></a><div class="news-body"><div class="news-meta"><span>5 Agustus 2026</span><span>•</span><span>2 menit baca</span></div><h3><a href="#pengumuman">Proyek siswa: ide kecil untuk perubahan yang berarti</a></h3><p>Siswa belajar mengamati masalah dan merancang solusi secara bersama.</p><a class="read-more" href="#pengumuman">Baca selengkapnya <span>→</span></a></div></article>
+          <article class="news-card"><a class="news-image" href="#pengumuman"><img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=85" alt="Guru mendampingi siswa belajar"><span class="news-category orange">PENGUMUMAN</span></a><div class="news-body"><div class="news-meta"><span>1 Agustus 2026</span><span>•</span><span>2 menit baca</span></div><h3><a href="#pengumuman">Informasi pendaftaran peserta didik baru 2026/2027</a></h3><p>Simak tahapan pendaftaran dan persyaratan calon peserta didik.</p><a class="read-more" href="#ppdb">Baca selengkapnya <span>→</span></a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="announcement-section" id="pengumuman">
+      <div class="container announcement-inner">
+        <div class="announcement-symbol">!</div><div class="announcement-copy"><span>PENGUMUMAN PENTING</span><h2>Pendaftaran peserta didik baru telah dibuka.</h2><p>Informasi pada website ini merupakan contoh awal dan dapat disesuaikan dengan data resmi sekolah.</p></div><a class="button button-light" href="#ppdb">Lihat informasi PPDB <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="section ppdb-section" id="ppdb">
+      <div class="container ppdb-grid">
+        <div><div class="eyebrow eyebrow-light">MULAI PERJALANANMU</div><h2>Siap menjadi bagian dari <span>Cendekia?</span></h2><p class="muted">Kenali sekolah kami lebih dekat. Isi formulir minat di bawah ini dan tim sekolah dapat menindaklanjuti melalui kontak yang kamu berikan.</p><div class="ppdb-points"><span>✓ Lingkungan belajar suportif</span><span>✓ Program akademik dan pengembangan diri</span><span>✓ Pendampingan potensi siswa</span></div></div>
+        <form class="interest-form" id="interestForm">
+          <h3>Formulir Minat PPDB</h3><p>Isi data berikut untuk simulasi pendaftaran.</p>
+          <label for="studentName">Nama calon siswa</label><input id="studentName" name="studentName" placeholder="Masukkan nama lengkap" required>
+          <label for="studentEmail">Email orang tua / siswa</label><input id="studentEmail" name="studentEmail" type="email" placeholder="nama@email.com" required>
+          <label for="studentGrade">Asal jenjang</label><select id="studentGrade" name="studentGrade" required><option value="">Pilih jenjang saat ini</option><option>SMP kelas 9</option><option>Sederajat</option><option>Lainnya</option></select>
+          <button class="button button-primary form-submit" type="submit">Kirim minat pendaftaran <span>→</span></button>
+          <small class="form-note">Demo front-end: data hanya disimpan di browser ini.</small>
+          <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="kontak">
+    <div class="container footer-main">
+      <div class="footer-about"><a class="brand brand-footer" href="#beranda"><span class="brand-mark"><span>CN</span></span><span class="brand-copy"><strong>SMA CENDEKIA</strong><small>NUSANTARA</small></span></a><p>Mendampingi generasi muda untuk tumbuh menjadi pembelajar sepanjang hayat yang berkarakter, kreatif, dan peduli.</p><div class="socials"><a href="#kontak" aria-label="Instagram">ig</a><a href="#kontak" aria-label="YouTube">yt</a><a href="#kontak" aria-label="Facebook">f</a></div></div>
+      <div class="footer-col"><h4>Jelajahi</h4><a href="#profil">Profil Sekolah</a><a href="#visi-misi">Visi & Misi</a><a href="#program">Program</a><a href="#berita">Berita</a></div>
+      <div class="footer-col"><h4>Informasi</h4><a href="#ppdb">PPDB 2026/2027</a><a href="#pengumuman">Pengumuman</a><a href="#program">Ekstrakurikuler</a><a href="#kontak">Kalender Akademik</a></div>
+      <div class="footer-col contact-col"><h4>Hubungi Kami</h4><p>⌖ &nbsp; Jl. Pendidikan No. 10, Indonesia</p><p>✉ &nbsp; info@cendekianusantara.sch.id</p><p>☎ &nbsp; (021) 555-0123</p><div class="office-hours">Senin–Jumat · 07.00–15.00 WIB</div></div>
+    </div>
+    <div class="footer-bottom"><div class="container footer-bottom-inner"><span>© <span id="year"></span> SMA Cendekia Nusantara. Semua hak dilindungi.</span><span>Dibuat untuk pendidikan yang lebih bermakna <span class="heart">♥</span></span></div></div>
+  </footer>
+  <button class="back-top" id="backTop" aria-label="Kembali ke atas">↑</button>
 </body>
 </html>

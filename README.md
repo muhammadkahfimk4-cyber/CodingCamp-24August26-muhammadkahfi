@@ -1,31 +1,34 @@
-# CodingCamp-24August26-muhammadkahfi
+# SMA Cendekia Nusantara — Website Sekolah
 
-## To-Do List Life Dashboard
+Website sekolah responsif yang dikembangkan dari proyek To-Do List Life Dashboard menjadi halaman profil sekolah.
 
-Mini Project Coding Camp menggunakan HTML, CSS, dan Vanilla JavaScript.
+## Fitur
+- Navigasi responsif untuk desktop dan perangkat seluler
+- Hero section, profil sekolah, nilai/visi, program, berita, pengumuman, dan informasi PPDB
+- Formulir minat PPDB demo yang menyimpan data di browser menggunakan Local Storage
+- Navigasi aktif berdasarkan section, tombol kembali ke atas, dan tahun footer otomatis
+- HTML, CSS, dan Vanilla JavaScript tanpa framework atau backend
 
-### Fitur
-- Jam dan tanggal realtime
-- Greeting berdasarkan waktu
-- Pomodoro timer
-- To-Do List dengan Local Storage
-- Quick Links dengan Local Storage
-- Light/Dark Mode
-- Custom name
-- Custom Pomodoro duration
-- Responsive design
+## Menjalankan secara lokal
+Buka `index.html` di browser. Koneksi internet dibutuhkan untuk memuat font dan foto dari Unsplash.
 
-### Struktur
+## Publikasi GitHub Pages
+1. Upload semua isi folder ini ke repository GitHub.
+2. Buka **Settings → Pages**.
+3. Pilih **Deploy from a branch**, branch `main`, folder `/ (root)`, lalu Save.
+
+## Catatan
+Nama sekolah, alamat, nomor telepon, email, statistik, berita, dan foto di halaman ini merupakan konten contoh. Ganti dengan informasi resmi sebelum dipublikasikan. Formulir PPDB ini hanya demo front-end; data tersimpan pada Local Storage browser pengguna dan tidak dikirim ke pihak sekolah.
+
+## Struktur folder
 ```text
-.
+CodingCamp-24August26-muhammadkahfi/
 ├── index.html
+├── README.md
+├── .kiro/
+│   └── README.md
 ├── css/
 │   └── style.css
-├── js/
-│   └── script.js
-└── .kiro/
-    └── README.md
+└── js/
+    └── script.js
 ```
-
-## GitHub Pages
-Setelah repository dibuat dan source code di-push, buka Settings > Pages. Pilih `Deploy from a branch`, branch `main`, folder `/(root)`, lalu Save. GitHub Pages akan mempublikasikan `index.html` dari repository.
